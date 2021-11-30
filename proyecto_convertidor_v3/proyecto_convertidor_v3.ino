@@ -82,3 +82,42 @@ void signal003(){//señal s3=(s5^-1) && s1=s5
   s1On();
   delay (timer);
 }
+void signal004(){
+  int a=0;
+  int b=0;
+  int c=0;
+  digitalWrite(P_pwm1, 0);
+  digitalWrite(P_pwm5, 0);
+  digitalWrite(P_pwm3, 0);
+  digitalWrite(M_pwm1, 0);
+  digitalWrite(M_pwm5, 0);
+  digitalWrite(M_pwm3, 0);
+  for(a=0;a<10;a++){
+    pulseOnlyS1();
+  }
+  for(b=0;b<10;b++){
+    pulseOnlyS3();
+  }
+    for(c=0;c<10;c++){
+    pulseOnlyS5();
+  }
+
+}
+void pulseOnlyS1(){
+    s1On();
+    delay(timer);
+    s1Off();
+    delay(timer);
+}
+void pulseOnlyS3(){
+    s3On();
+    delay(timer);
+    s3Off();
+    delay(timer);
+}
+void pulseOnlyS5(){
+    s5On();
+    delay(timer);
+    s5Off();
+    delay(timer);
+}
