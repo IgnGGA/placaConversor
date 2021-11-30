@@ -22,15 +22,10 @@ void setup()
 void loop()
 { 
   for (;;){
-    s3On();
-    s5Off();
-    s1On();
-    delay (timer);
-    s3Off();
-    s5On();
-    s1On();
-    delay (timer);
-
+    signal001();
+    //signal002();
+    //signal003();
+    //signal004();
   }
 }
 void s1On(){
@@ -56,4 +51,34 @@ void s5On(){
 void s5Off(){
   digitalWrite(P_pwm5, 0);
   digitalWrite(M_pwm5, 1);
+}
+void signal001(){//señal s3=(s5^-1) && s1=cte
+  s3On();
+  s5Off();
+  s1On();
+  delay (timer);
+  s3Off();
+  s5On();
+  s1On();
+  delay (timer);
+}
+void signal002(){//señal s3=(s5^-1) && s1=s3
+  s3On();
+  s5Off();
+  s1On();
+  delay (timer);
+  s3Off();
+  s5On();
+  s1Off();
+  delay (timer);
+}
+void signal003(){//señal s3=(s5^-1) && s1=s5
+  s3On();
+  s5Off();
+  s1Off();
+  delay (timer);
+  s3Off();
+  s5On();
+  s1On();
+  delay (timer);
 }
