@@ -91,6 +91,29 @@ void signalOut() {
     delay(timer);
   }
 }
+void signalsAllEqual() {
+  for (;;) {
+    pwm1On();
+    pwm3On();
+    pwm5On();
+    delay(timer);
+    pwm1Off();
+    pwm3Off();
+    pwm5Off();
+    delay(timer);
+  }
+}
+void signals15Equal3cte(){
+  pwm3On();
+  for(;;){
+    pwm1On();
+    pwm5On();
+    delay(timer);
+    pwm1Off();
+    pwm5Off();
+    delay(timer);
+  }
+}
 //========================================
 //PWM1==>Controla OPTO 2
 //PWM3==>Controla OPTO 1
@@ -99,7 +122,8 @@ void loop() {
   pwm1Off();
   pwm3Off();
   pwm5Off();
-  Serial.print("\n\t\tSeleccione que señal desea generar:\nSeñal 1:\tPWM1==PMW3!=PWM5\nSeñal 2:\tPWM5==PMW3!=PWM1\nSeñal 3:\tPWM3=Constante y PMW1!=PWM5");
+  Serial.print("\nFrecuencia = 1Hz por sistema, su moidificacion es directamente en el codigo fuente\n");
+  Serial.print("\n\t\tSeleccione que señal desea generar:\nSeñal 1:\tPWM1==PMW3!=PWM5\nSeñal 2:\tPWM5==PMW3!=PWM1\nSeñal 3:\tPWM3=Cte y PMW1!=PWM5\nSeñal 4:\tPWM1==PWM3==PWM5\nSeñal 5:\tPWM1==PWM5 y PWM3==Cte");
   do {
     if (Serial.available() > 0) {
       int comando = Serial.read();
@@ -113,15 +137,29 @@ void loop() {
           break;
         case '2':
           do {
-            Serial.print("\nSeñal 1:\nPWM1 y PWM5 complementarios,\nY PWM3 == PWM5\n");
+            Serial.print("\nSeñal 2:\nPWM1 y PWM5 complementarios,\nY PWM3 == PWM5\n");
             signalReverse();
           }
           while (true);
           break;
         case '3':
           do {
-            Serial.print("\nSeñal 1:\nPWM1 y PWM5 complementarios,\nY PWM3 == HIGH\n");
+            Serial.print("\nSeñal 3:\nPWM1 y PWM5 complementarios,\nY PWM3 == HIGH\n");
             signalOut();
+          }
+          while (true);
+          break;
+        case '4':
+          do {
+            Serial.print("\nSeñal 4:\nPWM1==PWM3==PWM5");
+            signalsAllEqual();
+          }
+          while (true);
+          break;
+        case '5':
+          do {
+            Serial.print("\nSeñal 4:\nPWM1==PWM5 y PWM3==Cte");
+            signals15Equal3cte();
           }
           while (true);
           break;
@@ -135,5 +173,5 @@ void loop() {
       }
     }
   }
-  while(true);
+  while (true);
 }
