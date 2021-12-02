@@ -22,7 +22,15 @@ void setup()
 void loop()
 { 
   for (;;){
-    signal001();
+    s1On();
+    s3On();
+    s5On();
+    delay(timer);
+    s1Off();
+    s3Off();
+    s5Off();
+    delay(timer);
+    //signal001();
     //signal002();
     //signal003();
     //signal004();
@@ -82,7 +90,7 @@ void signal003(){//señal s3=(s5^-1) && s1=s5
   s1On();
   delay (timer);
 }
-void signal004(){
+void signal004(){//generar 10 veces cada pulso de manera aislada
   int a=0;
   int b=0;
   int c=0;
