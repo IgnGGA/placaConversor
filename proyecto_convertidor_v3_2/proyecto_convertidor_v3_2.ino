@@ -122,50 +122,48 @@ void loop() {
   pwm1Off();
   pwm3Off();
   pwm5Off();
-  Serial.print("\nFrecuencia = 1Hz por sistema, su moidificacion es directamente en el codigo fuente\n");
-  Serial.print("\n\t\tSeleccione que señal desea generar:\nSeñal 1:\tPWM1==PMW3!=PWM5\nSeñal 2:\tPWM5==PMW3!=PWM1\nSeñal 3:\tPWM3=Cte y PMW1!=PWM5\nSeñal 4:\tPWM1==PWM3==PWM5\nSeñal 5:\tPWM1==PWM5 y PWM3==Cte");
   do {
     if (Serial.available() > 0) {
       int comando = Serial.read();
       switch (comando) {
         case '1':
           do {
-            Serial.print("\nSeñal 1:\nPWM1 y PWM5 complementarios,\nY PWM3 == PWM1\n");
+            Serial.println("Señal 1:\tOK");
             signalForward();
           }
           while (true);
           break;
         case '2':
           do {
-            Serial.print("\nSeñal 2:\nPWM1 y PWM5 complementarios,\nY PWM3 == PWM5\n");
+            Serial.println("Señal 2:\tOK");
             signalReverse();
           }
           while (true);
           break;
         case '3':
           do {
-            Serial.print("\nSeñal 3:\nPWM1 y PWM5 complementarios,\nY PWM3 == HIGH\n");
+            Serial.println("Señal 3:\tOK");
             signalOut();
           }
           while (true);
           break;
         case '4':
           do {
-            Serial.print("\nSeñal 4:\nPWM1==PWM3==PWM5");
+            Serial.println("Señal 4:\tOK");
             signalsAllEqual();
           }
           while (true);
           break;
         case '5':
           do {
-            Serial.print("\nSeñal 4:\nPWM1==PWM5 y PWM3==Cte");
+            Serial.println("Señal 5:\tOK");
             signals15Equal3cte();
           }
           while (true);
           break;
         case '0':
           do {
-            Serial.print("\n\t\tStop\n");
+            Serial.println("Señal 0:\tOK");
             exit(0);
           }
           while (true);
