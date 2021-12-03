@@ -21,7 +21,7 @@ def proyectoConvertidor():
         elif (selector == '5'):
             print("\nSeñal 4:\nPWM1==PWM5 y PWM3==Cte")
         elif (selector == '0'):
-            Serial.print("\n\t\tStop\n")
+            print("\n\t\tStop\n")
         while(True):
             pulsos.write(selector.encode("utf-8"))
             mensajeARD = pulsos.readline()
