@@ -1,9 +1,9 @@
-int s1M=11; //señal 1 pwmP en pin 1 conector placa
-int s1P=10; //señal 1 pwmM en pin 9 conector placa
-int s3P=6;  //señal 3 pwmM en pin 6 conector placa
-int s3M=5;  //señal 3 pwmP en pin 13 conector placa 
-int s5M=9;  //señal 5 pwmP en pin 4 conector placa
-int s5P=3;  //señal 5 pwmM en pin 12 conector placa
+int s1M=11; //señal 1 pwmM en pin 1 conector placa
+int s1P=10; //señal 1 pwmP en pin 9 conector placa
+int s3P=5;  //señal 3 pwmM en pin 6 conector placa
+int s3M=6;  //señal 3 pwmP en pin 13 conector placa 
+int s5M=3;  //señal 5 pwmP en pin 4 conector placa
+int s5P=9;  //señal 5 pwmM en pin 12 conector placa
 
 void setup() {
   pinMode(s1P, OUTPUT);
