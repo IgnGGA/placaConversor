@@ -18,6 +18,9 @@ def mensajesConectando(a):
     elif a==2:
         mensaje=print("Iniciando Banco De Pruebas SMA")
         return mensaje
+    elif a=='COM':
+        mensaje='Puerto COM: '
+        return mensaje
 
 def mensajesEsperados(a):
     if a=="sincronizadorUno":

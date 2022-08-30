@@ -4,7 +4,7 @@ def conexionPC():
     numeroPuerto=int()
     try:        
         conexion(1)
-        numeroPuerto=eval(input('Puerto COM: '))
+        numeroPuerto=eval(input(conexion('COM')))
         if type(numeroPuerto)==int:
             return numeroPuerto
         else:
