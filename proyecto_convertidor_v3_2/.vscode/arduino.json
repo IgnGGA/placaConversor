@@ -1,5 +1,0 @@
-{
-    "board": "arduino:avr:uno",
-    "sketch": "programas\\juegoDeSenalesV1\\juegoDeSenalesV1.ino",
-    "port": "COM5"
-}
