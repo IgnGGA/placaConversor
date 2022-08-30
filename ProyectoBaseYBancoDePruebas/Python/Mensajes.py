@@ -24,5 +24,5 @@ def mensajesEsperados(a):
         mensaje=('$ag#3l!h@spuprajek@&uWu5ls_ab_woHeyi4&asutro?=3cr9&a?_7c9e6@1afr')
         return mensaje
     elif a=="sincronizadorDos":
-        mensaje=('01000010 01100001 01101110 01100011 01101111 01000100 01100101 01010000 01110010 01110101 01100101 01100010 01100001 01110011 01010011 01001101 01000001')
+        mensaje=b'p!!-lf5yotizOQaGODekistIdeg0c6lWRuCEB&4HEYuZujoGewop!V=t-3Ib6thl'
         return mensaje
