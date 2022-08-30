@@ -10,8 +10,6 @@ def DetectandoBancoDePruebas():
             return mensajeBDPSMA
         if Lectura()==msj.mensajesEsperados("sincronizadorUno"):
             msj.mensajesConectando(2)
-            bancoDePruebas.write(msj.mensajesEsperados("sincronizadorDos"))
-            print (Lectura())
         else:
             msj.mensajeErrorConectando(4)
         bancoDePruebas.close()

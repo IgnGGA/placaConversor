@@ -22,10 +22,12 @@ void enviandoInformacion(){
 }
 
 void reciviendoInformacion(){
-  informacionSalida="";
   char informacion=(char)Serial.read();
   informacionEntrada+=informacion;
+  delay(1000);
   if (informacionEntrada==sincronizadorDos){
+    informacionSalida="";
     informacionSalida=(char)Serial.println(BancoDePruebasOK);
+    delay(1000);
   }
 }
