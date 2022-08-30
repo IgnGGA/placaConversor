@@ -1,18 +1,17 @@
 def conexionPC():
-    from tokenize import Name
-    from turtle import delay#importe de librerias
-    import Mensajes as msj
+    from Mensajes import mensajesConectando as conexion
+    from Mensajes import mensajeErrorConectando as errorConexion
     numeroPuerto=int()
     try:        
-        msj.mensajesConectando(1)
+        conexion(1)
         numeroPuerto=eval(input('Puerto COM: '))
         if type(numeroPuerto)==int:
             return numeroPuerto
         else:
-            msj.mensajeErrorConectando(1)
-            msj.mensajeErrorConectando(3)
+            errorConexion(1)
+            errorConexion(3)
     except ValueError:
-        msj.mensajeErrorConectando(1)
-        msj.mensajeErrorConectando(3)
+        errorConexion(1)
+        errorConexion(3)
     except NameError:
-        msj.mensajeErrorConectando(2)
+        errorConexion(2)
