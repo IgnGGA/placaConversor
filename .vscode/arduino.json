@@ -1,4 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "ProyectoBaseYBancoDePruebas\\proyectoConvertidorV4.2\\proyectoConvertidorV4.2.ino"
+    "sketch": "ProyectoBaseYBancoDePruebas\\proyectoConvertidorV4.2\\proyectoConvertidorV4.2.ino",
+    "port": "COM10"
 }
