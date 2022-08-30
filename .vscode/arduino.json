@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "ProyectoBaseYBancoDePruebas\\proyectoConvertidorV4.2\\proyectoConvertidorV4.2.ino"
+}
