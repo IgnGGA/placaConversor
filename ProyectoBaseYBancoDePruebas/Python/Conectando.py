@@ -1,9 +1,18 @@
-import serial,os,datetime,sys#importe de librerias
+from tokenize import Name
+import Mensajes as msj
 
 def conexionPC():
     numeroPuerto=int()
     try:
-        numeroPuerto=eval(input)
-        print(numeroPuerto,'+',type(numeroPuerto))
+        msj.mensajesConectando(1)
+        numeroPuerto=eval(input('Puerto COM: '))
+        if type(numeroPuerto)==int:
+            return numeroPuerto
+        else:
+            msj.mensajeErrorConectando(1)
+            msj.mensajeErrorConectando(3)
     except ValueError:
-        print('Error')
+        msj.mensajeErrorConectando(1)
+        msj.mensajeErrorConectando(3)
+    except NameError:
+        msj.mensajeErrorConectando(2)
