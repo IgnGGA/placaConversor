@@ -1,7 +1,7 @@
 String informacionSalida;
 String informacionEntrada;
 String sincronizadorUno="$ag#3l!h@spuprajek@&uWu5ls_ab_woHeyi4&asutro?=3cr9&a?_7c9e6@1afr";
-String sincronizadorDos="p!!-lf5yotizOQaGODekistIdeg0c6lWRuCEB&4HEYuZujoGewop!V=t-3Ib6thl";
+String sincronizadorDos="666";
 String BancoDePruebasOK="Banco De Pruebas Activado";
 int testLed=13;
 
@@ -26,7 +26,7 @@ void loop() {
 }
 
 void enviandoInformacion(){
-  informacionSalida=(char)Serial.println(sincronizadorUno);
+  informacionSalida=Serial.println(sincronizadorUno);
 }
 void testing(){
   digitalWrite(testLed,1);
