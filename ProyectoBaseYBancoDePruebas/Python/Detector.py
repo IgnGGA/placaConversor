@@ -1,6 +1,6 @@
 def DetectandoBancoDePruebas():
     import serial
-    import Mensajes as msj
+    from pruebaLogica import pruebaLogica as PL
     from Mensajes import mensajesConectando as conexion
     from Mensajes import mensajeErrorConectando as errorConexion
     from Mensajes import mensajesEsperados as sincro
@@ -11,10 +11,10 @@ def DetectandoBancoDePruebas():
             mensajeBDPSMA=bancoDePruebas.readline()
             mensajeBDPSMA=str(mensajeBDPSMA.decode('utf-8')).strip()
             return mensajeBDPSMA
-        if Lectura()==sincro("sincronizadorUno"):
+        if PL(Lectura(),sincro("sincronizadorUno"))==True:
             conexion(2)
             bancoDePruebas.write(sincro("sincronizadorDos"))
-            if Lectura()==sincro("OK"):
+            if PL(Lectura(),sincro("OK"))==True:
                 sincro("Activado")
         else:
             errorConexion(4)
