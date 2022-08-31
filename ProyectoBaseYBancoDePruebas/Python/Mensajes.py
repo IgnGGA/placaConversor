@@ -27,7 +27,7 @@ def mensajesEsperados(a):
         mensaje=('$ag#3l!h@spuprajek@&uWu5ls_ab_woHeyi4&asutro?=3cr9&a?_7c9e6@1afr')
         return mensaje
     elif a=="sincronizadorDos":
-        mensaje=bytes('666','utf-8')
+        mensaje=(b'2')
         return mensaje
     elif a=="OK":
         mensaje=('Banco De Pruebas Activado')
