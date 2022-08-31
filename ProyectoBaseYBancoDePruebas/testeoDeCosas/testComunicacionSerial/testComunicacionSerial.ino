@@ -10,12 +10,13 @@ void setup() {
   Serial.setTimeout(50);
   informacionSalida.reserve(50);
   informacionEntrada.reserve(50);
+  informacionEntrada=(char)Serial.read();
   pinMode(testLed,OUTPUT);
 }
 
 void loop() {
   enviandoInformacion();
-  informacionEntrada=(char)Serial.println(sincronizadorDos);
+  delay(2000);
   while(informacionEntrada==sincronizadorDos){
     int i;
     informacionSalida=(char)Serial.println(BancoDePruebasOK);
