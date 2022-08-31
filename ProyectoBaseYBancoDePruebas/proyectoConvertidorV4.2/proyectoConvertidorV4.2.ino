@@ -7,8 +7,6 @@ int PWM5M=5;//PWM 5 corresponde a los IGBT v1 y v2 activandose uno a uno en cada
 int tiempo=800;
 
 void setup() {
-  Serial.begin(9600);
-  Serial.setTimeout(50);
   pinMode(PWM1P,OUTPUT);
   pinMode(PWM1M,OUTPUT);
   pinMode(PWM3P,OUTPUT);
@@ -19,10 +17,10 @@ void setup() {
 
 
 void loop(){
-  Oscilacion();
+  ciclon();
 }
 
-void Oscilacion(){
+void ciclon(){
   for(;;){
     TodosUno();
     SCUPU();
