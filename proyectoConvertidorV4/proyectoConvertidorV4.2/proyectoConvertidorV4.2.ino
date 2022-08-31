@@ -18,6 +18,10 @@ void setup() {
 
 
 void loop(){
+  ciclon();
+}
+
+void ciclon(){
   for(;;){
     TodosUno();
     SCUPU();
