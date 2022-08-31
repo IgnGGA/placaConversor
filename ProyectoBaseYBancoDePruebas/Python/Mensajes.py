@@ -10,6 +10,10 @@ def mensajeErrorConectando(a):
         return mensaje
     elif a==4:
         mensaje=print('Imposible Comunicar con Banco de Pruebas SMA')
+        return mensaje
+    elif a==5:
+        mensaje=print('Problemas en Banco de Pruebas\nReintentar conexión o verificar programación')
+        return mensaje
 
 def mensajesConectando(a):
     if a==1:
@@ -27,7 +31,7 @@ def mensajesEsperados(a):
         mensaje=('$ag#3l!h@spuprajek@&uWu5ls_ab_woHeyi4&asutro?=3cr9&a?_7c9e6@1afr')
         return mensaje
     elif a=="sincronizadorDos":
-        mensaje=(b'2')
+        mensaje=(b'9')
         return mensaje
     elif a=="OK":
         mensaje=('Banco De Pruebas Activado')
@@ -35,3 +39,13 @@ def mensajesEsperados(a):
     elif a=="Activado":
         mensaje=print('Banco de Pruebas SMA Activado')
         return mensaje
+    
+def cierresDePrograma(a):
+    if a==1:
+        mensaje=print('Cerrando Puerto COM')
+        return mensaje
+    elif a==2:
+        mensaje=print('Cerrando Puerto COM por falla en comunicación')
+        return mensaje
+    elif a==3:
+        mensaje=print('Cerrando Puerto COM por falla en el Banco de Pruebas')
