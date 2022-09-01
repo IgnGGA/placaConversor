@@ -79,6 +79,8 @@ void testing(){//codigo de prueba funcionamiento
 void ciclon(){//NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
   int lectura=analogRead(lecturaSenal);
   while(lectura>=950){
+    lcd.setCursor(0,0);
+    lcd.print("Prueba iniciada");
     for(;;){
       TodosUno();
       SCUPU();
