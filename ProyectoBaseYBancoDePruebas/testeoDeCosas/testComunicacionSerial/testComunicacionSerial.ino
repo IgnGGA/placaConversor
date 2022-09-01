@@ -1,9 +1,11 @@
+//________________COMUNICACIÓN_PC_____________________________________________________________________________________
 String informacionEntrada;//Informacion que viene desde el programa Detector.py
 String informacionSalida;//Informacion que sale hacia el programa Detector.py
 String sincronizadorUno="$ag#3l!h@spuprajek@&uWu5ls_ab_woHeyi4&asutro?=3cr9&a?_7c9e6@1afr";//Palabra que es enviada al programa Detector.py para comparar
 String BancoDePruebasOK="Banco De Pruebas Activado";//Palabra enviada para confirmar condición de palra recivida
 char sincronizadorDos='2';
 int testLed=13;//pin13 del arduino
+//_________________SEÑAL_HACIA_TARJETA_SMA____________________________________________________________________________
 int PWM1P=10;
 int PWM1M=11;//PWM 1 corresponde a los IGBT v3/v4
 int PWM3P=3;
@@ -11,13 +13,15 @@ int PWM3M=9;//PWM 3 corresponde a los IGBT v4/v6
 int PWM5P=6;
 int PWM5M=5;//PWM 5 corresponde a los IGBT v1 y v2 activandose uno a uno en cada semiciclo
 int tiempo=800;
-
+//__________________PANTALLA_LCD_______________________________________________________________________________________
 void setup() {
+//__________________COMUNICACIÓN_PC____________________________________________________________________________________
   Serial.begin(9600);
   Serial.setTimeout(50);
   informacionSalida.reserve(50);
   informacionEntrada.reserve(50);
   pinMode(testLed,OUTPUT);
+//_________________SEÑAL_SMA___________________________________________________________________________________________
   pinMode(PWM1P,OUTPUT);//|
   pinMode(PWM1M,OUTPUT);//|
   pinMode(PWM3P,OUTPUT);//>>Generacion de pulsos para banco de pruebas, NO MANIPULAR
@@ -102,7 +106,7 @@ void SCDPU(){//SemiCiclo Uno Parte Uno, NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 
   digitalWrite(PWM5M,0);
   delayMicroseconds(5*tiempo/18);
 }
-void SCDPD(){//NO PAMIPULAR, SEÑAL CONSTRUCTORA PARTE 5
+void SCDPD(){//NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 5
   digitalWrite(PWM1M,1);//0
   digitalWrite(PWM3P,1);//1
   digitalWrite(PWM5M,1);//0
