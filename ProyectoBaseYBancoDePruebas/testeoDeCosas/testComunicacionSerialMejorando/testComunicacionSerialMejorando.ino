@@ -17,7 +17,7 @@ int PWM5P = 6;
 int PWM5M = 5; // PWM 5 corresponde a los IGBT v1 y v2 activandose uno a uno en cada semiciclo
 int tiempo = 800;
 //__________________PANTALLA_LCD_______________________________________________________________________________________
-LiquidCrystal lcd(12, 13, A0, A1, A2, A3);
+LiquidCrystal lcd(12, 13, A1, A2, A3, A4);
 
 void setup()
 {
@@ -44,7 +44,7 @@ void loop()
   delay(1000);
   lcd.clear();
   lcd.setCursor(0, 1);
-  lcd.print("Espere");
+  lcd.print("Espere...");
   enviandoInformacion();
   delay(1000);
   char informacionEntrada = Serial.read();
@@ -56,9 +56,6 @@ void loop()
     lcd.print("PC OK");
     delay(2000);
     Serial.println(BancoDePruebasOK);
-    lcd.clear();
-    lcd.setCursor(0, 1);
-    lcd.print("Enviando Señal");
     // for(i=0;i<10;i++){
     //   testing();
     // }
@@ -83,6 +80,10 @@ void testing()
 
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
+  lcd.clear();
+  lcd.setCursor(0, 1);
+  lcd.print("PWM 1KHz");
+  delay(500);
   lcd.setCursor(0, 0);
   lcd.print("Prueba iniciada");
   for (;;)
