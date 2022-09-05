@@ -176,10 +176,10 @@ void mensajeSerial(String a) {
 }
 
 void pruebaErrores(char a) {
-  digitalWrite(a, HIGH);
+  digitalWrite(a,1);
   int i = 0;
-  for (i = 0; i < 100; i++) {
+  for (i = 0; i < 8000; i++) {
     ciclo();
   }
-  digitalWrite(a, LOW);
+  digitalWrite(a,0);
 }
