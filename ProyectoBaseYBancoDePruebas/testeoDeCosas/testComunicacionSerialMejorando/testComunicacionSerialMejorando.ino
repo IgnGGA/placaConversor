@@ -8,6 +8,8 @@ String BancoDePruebasOK = "Banco De Pruebas Activado";                          
 char sincronizadorDos = '2';
 int testLed = 13; // pin13 del arduino
 int lecturaSenal = A0;
+int opcionA=2;
+int opcionB=7;
 //_________________SEÑAL_HACIA_TARJETA_SMA____________________________________________________________________________
 int PWM1P = 10;
 int PWM1M = 11; // PWM 1 corresponde a los IGBT v3/v4
@@ -37,31 +39,44 @@ void setup()
                           //_________________LCD_________________________________________________________________________________________________
   lcd.begin(16, 2);
   lcd.print("BCO PRUEBAS SMA");
+  //_________________________________________selector____________________________________________________________________________________________
+  pinMode(opcionA,INPUT);
+  pinMode(opcionB,INPUT);
 }
 
 void loop()
 {
   delay(1000);
-  lcd.clear();
-  lcd.setCursor(0, 1);
-  lcd.print("Espere...");
+  pantalla(1,"Espere...");
   enviandoInformacion();
   delay(1000);
   char informacionEntrada = Serial.read();
   while (informacionEntrada == sincronizadorDos)
-  { // comparacion de palabra recivida
-    // int i;
-    lcd.clear();
-    lcd.setCursor(0, 1);
-    lcd.print("PC OK");
+  {
+    pantalla(1,"PC OK");
     delay(2000);
     Serial.println(BancoDePruebasOK);
     // for(i=0;i<10;i++){
     //   testing();
     // }
     // informacionSalida="";
-    ciclon();
-    break;
+    if (digitalRead(opcionA)==1 && digitalRead(opcionB)==0){
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print(digitalRead(opcionA));
+      delay(500);
+      ciclon();
+      }
+    else if (digitalRead(opcionB)==1 && digitalRead(opcionA)==0){
+      pantalla(0,"Sin Funcion");
+      lcd.setCursor(0,1);
+      lcd.print(digitalRead(opcionB));
+      delay(800);
+    }
+    else if (digitalRead(opcionA)==digitalRead(opcionB)==0){
+      pantalla(0,"Elija Funcion");
+      delay(1500);
+    }
   }
 }
 
@@ -80,9 +95,7 @@ void testing()
 
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
-  lcd.clear();
-  lcd.setCursor(0, 1);
-  lcd.print("PWM 1KHz");
+  pantalla(1,"PWM 1KHz");
   delay(500);
   lcd.setCursor(0, 0);
   lcd.print("Prueba iniciada");
@@ -147,4 +160,9 @@ void SCDPD()
   digitalWrite(PWM3M, 0);
   digitalWrite(PWM5P, 0);
   delayMicroseconds(tiempo / 6);
+}
+void pantalla(int a, String b){
+  lcd.clear();
+  lcd.setCursor(0,a);
+  lcd.print(b);
 }
