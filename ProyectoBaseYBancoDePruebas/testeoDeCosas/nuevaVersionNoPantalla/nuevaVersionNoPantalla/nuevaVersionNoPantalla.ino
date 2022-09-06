@@ -2,80 +2,65 @@
 #include <LiquidCrystal_I2C.h>
 //int testLed = 13; //pin13 del arduino
 //participacion generacion PWM
-int PWM1P = 10;
-int PWM1M = 11; //PWM 1 corresponde a los IGBT v3/v4
-int PWM3P = 3;
-int PWM3M = 9; //PWM 3 corresponde a los IGBT v4/v6
-int PWM5P = 6;
-int PWM5M = 5; //PWM 5 corresponde a los IGBT v1 y v2 activandose uno a uno en cada semiciclo
+int PWM1P = 10; int PWM1M = 11; //PWM 1 corresponde a los IGBT v3/v4
+int PWM3P = 3; int PWM3M = 9; //PWM 3 corresponde a los IGBT v4/v6
+int PWM5P = 6; int PWM5M = 5; //PWM 5 corresponde a los IGBT v1 y v2 activandose uno a uno en cada semiciclo
 int tiempo = 800;
 //INTERRUPCION IGBT
-int cutHSS1 = 13;
-int cutHSS2 = 12;
-int cutWR1 = 8;
-int cutWR2 = 7;
-int cutWR3 = 4;
-int cutWR4 = 2;
-LiquidCrystal_I2C lcd(0x27,20,4);
-int opA = A0;
-int opB = A1;
+int HSS1 = 13; int HSS2 = 12;
+int WR1 = 8; int WR2 = 7;
+int WR3 = 4; int WR4 = 2;
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+int opA = A0; int opB = A1;
 
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(50);
   Serial.println("BANCO DE PRUEBAS SMA");
-  pinMode(PWM1P, OUTPUT); //|
-  pinMode(PWM1M, OUTPUT); //|
-  pinMode(PWM3P, OUTPUT); //>>Generacion de pulsos para banco de pruebas, NO MANIPULAR
-  pinMode(PWM3M, OUTPUT); //|
-  pinMode(PWM5P, OUTPUT); //|
-  pinMode(PWM5M, OUTPUT); //|
-  pinMode(cutHSS1, OUTPUT);
-  pinMode(cutHSS2, OUTPUT);
-  pinMode(cutWR1, OUTPUT);
-  pinMode(cutWR2, OUTPUT);
-  pinMode(cutWR3, OUTPUT);
-  pinMode(cutWR4, OUTPUT);
-  lcd.begin();
-  lcd.setCursor(0,0);lcd.print("Banco De Pruebas SMA");
-  pinMode(opA, INPUT);
-  pinMode(opB, INPUT);
+  pinMode(PWM1P, OUTPUT); pinMode(PWM1M, OUTPUT);
+  pinMode(PWM3P, OUTPUT); pinMode(PWM3M, OUTPUT);
+  pinMode(PWM5P, OUTPUT); pinMode(PWM5M, OUTPUT);
+  pinMode(HSS1, OUTPUT); pinMode(HSS2, OUTPUT);
+  pinMode(WR1, OUTPUT); pinMode(WR2, OUTPUT);
+  pinMode(WR3, OUTPUT); pinMode(WR4, OUTPUT);
+  lcd.setCursor(0, 0); lcd.print("Banco De Pruebas SMA");
+  pinMode(opA, INPUT); pinMode(opB, INPUT);
 }
 
 void loop() {
   mensajeSerial("Iniciando programa");
-  mInicio(25,25,25);
+  mInicio(25, 25, 25);
   do {
     bool lecA = digitalRead(opA);
     bool lecB = digitalRead(opB);
     if (lecA == 1 and lecA != lecB) {
       mensajeSerial("Prueba Automatica.\n\tFrecuencia: 1KHz");
       Serial.println(lecA, lecB);
-      imprimirMensajes(0, 1,,2,3 "Prueba Modo:","Oscilacion Constante","Frecuencia:","  1KHz");
+      imprimirMensajes(0, 1, 2, 3,"Prueba Modo:","Oscilacion Constante","Frecuencia:","  1KHz");
       ciclon();
       break;
     }
     else if (lecB == 1 and lecA != lecB) {
       mensajeSerial("Prueba Modo:\n\tInterrupcion de IGBT\nFrecuencia 1KHz");
       Serial.println(lecA, lecB);
-      pruebaErrores(cutHSS1);
+      pruebaErrores(HSS1);
       delay(1000);
-      pruebaErrores(cutHSS2);
+      pruebaErrores(HSS2);
       delay(1000);
-      pruebaErrores(cutWR1);
+      pruebaErrores(WR1);
       delay(1000);
-      pruebaErrores(cutWR2);
+      pruebaErrores(WR2);
       delay(1000);
-      pruebaErrores(cutWR3);
+      pruebaErrores(WR3);
       delay(1000);
-      pruebaErrores(cutWR4);
+      pruebaErrores(WR4);
       delay(1000);
       break;
     }
     else if (lecA == lecB) {
       mensajeSerial("Esperando...");
       Serial.println(lecA, lecB);
-      //imprimirMensajes(0, 1, "Esperando", "........");
+      imprimirMensajes(0, 1, 2, 3, "Banco de", "Pruebas SMA", "A)OSC. CTE. 1KHz", "B)Interrupcion IGBT");
       delay(1000);
     }
   }
@@ -163,12 +148,12 @@ void mInicio(int a, int b, int c) {
   //imprimirMensajes(0, 1, "Seleecione Prueba", "A)Auto - B)Manual");
   delay(c * 100);
 }
-void imprimirMensajes(int a, int b,int c,int d, String e, String f, String g, String h) {
+void imprimirMensajes(int a, int b, int c, int d, String e, String f, String g, String h) {
   lcd.clear();
-  lcd.setCursor(0, a);lcd.print (e);
-  lcd.setCursor(0, b);lcd.print (f);
-  lcd.setCursor(0, c);lcd.print (g);
-  lcd.setCursor(0, d);lcd.print (h);
+  lcd.setCursor(0, a); lcd.print (e);
+  lcd.setCursor(0, b); lcd.print (f);
+  lcd.setCursor(0, c); lcd.print (g);
+  lcd.setCursor(0, d); lcd.print (h);
 }
 
 void mensajeSerial(String a) {
@@ -176,12 +161,12 @@ void mensajeSerial(String a) {
 }
 
 void pruebaErrores(char a) {
-  imprimirMensaje(0,1,2,3,"Prueba Modo:","Interrupcion IGBT","Probando:",a);
-  Serial.println("Interrumpiendo señal IGBT: "+a);
-  digitalWrite(a,1);
+  imprimirMensajes(0, 1, 2, 3, "Prueba Modo:", "Interrupcion IGBT", "Probando:", (String) a);
+  Serial.println("Interrumpiendo señal IGBT: " + a);
+  digitalWrite(a, 1);
   int i = 0;
-  for (i = 0; i < 8000; i++) {
+  for (i = 0; i < tiempo * 10; i++) {
     ciclo();
   }
-  digitalWrite(a,0);
+  digitalWrite(a, 0);
 }
