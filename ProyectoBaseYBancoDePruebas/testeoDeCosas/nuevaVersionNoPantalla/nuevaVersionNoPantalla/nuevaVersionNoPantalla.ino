@@ -108,7 +108,8 @@ void seleccion()
 
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
-  for (;;)
+  int i=0;//la prueba dura 4 horas continuas.
+  for (i=0;i<180000;i++)
   {
     ciclo();
   }
