@@ -103,23 +103,12 @@ void seleccion()
     }
   } while (true);
 }
-// void testing() { //codigo de prueba funcionamiento
-//   digitalWrite(testLed, 1);
-//   delay(500);
-//   digitalWrite(testLed, 0);
-//   delay(500);
-// }
 
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
   for (;;)
   {
-    TodosUno();
-    SCUPU();
-    SCUPD();
-    TodosUno();
-    SCDPU();
-    SCDPD();
+    ciclo();
   }
 }
 void ciclo()
