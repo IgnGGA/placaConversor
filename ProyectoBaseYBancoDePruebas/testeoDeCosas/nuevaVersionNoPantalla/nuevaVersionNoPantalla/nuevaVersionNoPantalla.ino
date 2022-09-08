@@ -67,6 +67,7 @@ void seleccion()
       {
         imprimirMensajes(0, 1, 2, 3, "Prueba Modo:", "Oscilacion Constante", "Frecuencia:", "  1KHz");
         ciclon();
+        finPrueba();
         break;
       }
       else if (lecB == 1 and lecA != lecB)
@@ -85,6 +86,7 @@ void seleccion()
       {
         mensajeSerial("Prueba Modo:\n\tInterrupcion de IGBT\nFrecuencia 1KHz");
         interrupcionIGBT();
+        finPrueba();
         break;
       }
       else if (lecB==1 and lecA!=lecB)
@@ -226,4 +228,10 @@ void interrupcionIGBT()
   delay(1000);
   pruebaErrores(WR4);
   delay(1000);
+}
+
+void finPrueba(){
+  imprimirMensajes(0,1,2,3,"Prueba finalizada.","","Volviendo a ","Selector");
+  seleccion();
+  break;
 }
