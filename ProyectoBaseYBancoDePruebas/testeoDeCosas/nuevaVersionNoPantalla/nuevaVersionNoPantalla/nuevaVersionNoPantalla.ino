@@ -47,6 +47,11 @@ void loop()
 {
   mensajeSerial("Iniciando programa");
   mInicio(25, 25, 25);
+  seleccion();
+}
+
+void seleccion()
+{
   do
   {
     bool lecA = digitalRead(opA);
@@ -55,16 +60,39 @@ void loop()
     {
       mensajeSerial("Prueba Automatica.\n\tFrecuencia: 1KHz");
       Serial.println(lecA, lecB);
-      imprimirMensajes(0, 1, 2, 3, "Prueba Modo:", "Oscilacion Constante", "Frecuencia:", "  1KHz");
-      ciclon();
-      break;
+      bool lecA = digitalRead(opA);
+      bool lecB = digitalRead(opB);
+      imprimirMensajes(0, 1, 2, 3, "Prueba automatica."; "Confirmar: A)", "Regresar: B)", "");
+      if (lecA == 1 and lecA != lecB !)
+      {
+        imprimirMensajes(0, 1, 2, 3, "Prueba Modo:", "Oscilacion Constante", "Frecuencia:", "  1KHz");
+        ciclon();
+        break;
+      }
+      else if (lecB == 1 and lecA != lecB)
+      {
+        seleccion();
+        break;
+      }
     }
     else if (lecB == 1 and lecA != lecB)
     {
-      mensajeSerial("Prueba Modo:\n\tInterrupcion de IGBT\nFrecuencia 1KHz");
       Serial.println(lecA, lecB);
-      interrupcionIGBT();
-      break;
+      bool lecA = digitalRead(opA);
+      bool lecB = digitalRead(opB);
+      imprimirMensajes(0, 1, 2, 3, "Prueba Interrupcion."; "Confirmar: A)", "Regresar: B)", "");
+      if (lecA == 1 and lecA != lecB !)
+      {
+        mensajeSerial("Prueba Modo:\n\tInterrupcion de IGBT\nFrecuencia 1KHz");
+        interrupcionIGBT();
+        break;
+      }
+      else if (lecB==1 and lecA!=lecB)
+      {
+        seleccion();
+        break;
+      }
+      
     }
     else if (lecA == lecB)
     {
@@ -75,7 +103,6 @@ void loop()
     }
   } while (true);
 }
-
 // void testing() { //codigo de prueba funcionamiento
 //   digitalWrite(testLed, 1);
 //   delay(500);
@@ -160,10 +187,10 @@ void mInicio(int a, int b, int c)
 {
   delay(a * 100);
   mensajeSerial("Iniciando, favor esperar");
-  // imprimirMensajes(0, 1, "Iniciando.", "Espere...");
+  imprimirMensajes(0, 1, , 2, 3 "Iniciando.", "Espere...", "", "");
   delay(b * 100);
   mensajeSerial("Esperando Seleccion:\n\tA)Auto\n\tB)Manual");
-  // imprimirMensajes(0, 1, "Seleecione Prueba", "A)Auto - B)Manual");
+  imprimirMensajes(0, 1, 2, 3, "Seleecione Prueba:", "", "A) Auto", "B) Manual");
   delay(c * 100);
 }
 void imprimirMensajes(int a, int b, int c, int d, String e, String f, String g, String h)
