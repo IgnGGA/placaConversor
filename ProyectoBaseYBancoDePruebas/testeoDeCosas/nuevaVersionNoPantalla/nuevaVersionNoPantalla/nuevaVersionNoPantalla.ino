@@ -109,7 +109,7 @@ void seleccion()
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
   int i=0;//la prueba dura 4 horas continuas.
-  for (i=0;i<180000;i++)
+  for (i=0;i<horas();i++)
   {
     ciclo();
   }
@@ -235,4 +235,10 @@ void finPrueba(){
   imprimirMensajes(0,1,2,3,"Prueba finalizada.","","Volviendo a ","Selector");
   seleccion();
   break;
+}
+
+void horas(){
+  int horas=0;
+  horas=(4*60*60*100*100/tiempo);//El primer digito (4) define las horas de trabajo, el divisor es el tiempo de ciclo
+  return horas;
 }
