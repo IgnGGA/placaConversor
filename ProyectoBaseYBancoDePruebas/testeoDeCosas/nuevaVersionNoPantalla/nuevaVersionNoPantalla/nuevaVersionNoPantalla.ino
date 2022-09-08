@@ -196,7 +196,7 @@ void pruebaErrores(char a)
   }
   digitalWrite(a, 0);
 }
-voi interrupcionIGBT()
+void interrupcionIGBT()
 {
   pruebaErrores(HSS1);
   delay(1000);
