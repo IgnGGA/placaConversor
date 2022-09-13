@@ -16,7 +16,7 @@ int WR1 = 8;
 int WR2 = 7;
 int WR3 = 4;
 int WR4 = 2;
-LiquidCrystal_I2C lcd(0x27, 20, 4);
+LiquidCrystal_I2C lcd(0x20, 20, 4);
 int opA = A0;
 int opB = A1;
 
@@ -62,8 +62,8 @@ void seleccion()
       Serial.println(lecA, lecB);
       bool lecA = digitalRead(opA);
       bool lecB = digitalRead(opB);
-      imprimirMensajes(0, 1, 2, 3, "Prueba automatica."; "Confirmar: A)", "Regresar: B)", "");
-      if (lecA == 1 and lecA != lecB !)
+      imprimirMensajes(0, 1, 2, 3, "Prueba automatica.", "Confirmar: A)", "Regresar: B)", "");
+      if (lecA == 1 and lecA != lecB )
       {
         imprimirMensajes(0, 1, 2, 3, "Prueba Modo:", "Oscilacion Constante", "Frecuencia:", "  1KHz");
         ciclon();
@@ -81,20 +81,20 @@ void seleccion()
       Serial.println(lecA, lecB);
       bool lecA = digitalRead(opA);
       bool lecB = digitalRead(opB);
-      imprimirMensajes(0, 1, 2, 3, "Prueba Interrupcion."; "Confirmar: A)", "Regresar: B)", "");
-      if (lecA == 1 and lecA != lecB !)
+      imprimirMensajes(0, 1, 2, 3, "Prueba Interrupcion.", "Confirmar: A)", "Regresar: B)", "");
+      if (lecA == 1 and lecA != lecB)
       {
         mensajeSerial("Prueba Modo:\n\tInterrupcion de IGBT\nFrecuencia 1KHz");
         interrupcionIGBT();
         finPrueba();
         break;
       }
-      else if (lecB==1 and lecA!=lecB)
+      else if (lecB == 1 and lecA != lecB)
       {
         seleccion();
         break;
       }
-      
+
     }
     else if (lecA == lecB)
     {
@@ -108,8 +108,8 @@ void seleccion()
 
 void ciclon()
 { // NO MANIPULAR, SEÑAL CONSTRUCTORA DE SEÑAL TOTAL
-  int i=0;//la prueba dura 4 horas continuas.
-  for (i=0;i<horas();i++)
+  int i = 0; //la prueba dura 4 horas continuas.
+  for (i = 0; i < horas(); i++)
   {
     ciclo();
   }
@@ -125,7 +125,7 @@ void ciclo()
 }
 
 void TodosUno()
-{                         // NO MANIPULAR, FUNCION CONSTRUCTORA DE SEÑALES PARTE 1
+{ // NO MANIPULAR, FUNCION CONSTRUCTORA DE SEÑALES PARTE 1
   digitalWrite(PWM1P, 1); // 1
   digitalWrite(PWM3P, 1); // 1
   digitalWrite(PWM5P, 1); // 1
@@ -136,7 +136,7 @@ void TodosUno()
 }
 // funciones primer semiciclo
 void SCUPU()
-{                         // SemiCiclo Uno Parte Dos; NO MANIPULAR, FUNCION CONSTRUCTORA PARTE 2
+{ // SemiCiclo Uno Parte Dos; NO MANIPULAR, FUNCION CONSTRUCTORA PARTE 2
   digitalWrite(PWM1P, 1); // 1
   digitalWrite(PWM3M, 1); // 0
   digitalWrite(PWM5P, 1); // 1
@@ -146,7 +146,7 @@ void SCUPU()
   delayMicroseconds(5 * tiempo / 18);
 }
 void SCUPD()
-{                         // NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 3
+{ // NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 3
   digitalWrite(PWM1P, 1); // 1
   digitalWrite(PWM3M, 1); // 0
   digitalWrite(PWM5M, 1); // 0
@@ -156,7 +156,7 @@ void SCUPD()
   delayMicroseconds(tiempo / 6);
 }
 void SCDPU()
-{                         // SemiCiclo Uno Parte Uno, NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 4
+{ // SemiCiclo Uno Parte Uno, NO MANIPULAR, SEÑAL CONSTRUCTORA PARTE 4
   digitalWrite(PWM1M, 1); // 0
   digitalWrite(PWM3P, 1); // 1
   digitalWrite(PWM5P, 1); // 1
@@ -166,7 +166,7 @@ void SCDPU()
   delayMicroseconds(5 * tiempo / 18);
 }
 void SCDPD()
-{                         // NO PAMIPULAR, SEÑAL CONSTRUCTORA PARTE 5
+{ // NO PAMIPULAR, SEÑAL CONSTRUCTORA PARTE 5
   digitalWrite(PWM1M, 1); // 0
   digitalWrite(PWM3P, 1); // 1
   digitalWrite(PWM5M, 1); // 0
@@ -179,7 +179,7 @@ void mInicio(int a, int b, int c)
 {
   delay(a * 100);
   mensajeSerial("Iniciando, favor esperar");
-  imprimirMensajes(0, 1, , 2, 3 "Iniciando.", "Espere...", "", "");
+  imprimirMensajes(0, 1, 2, 3 , "Iniciando.", "Espere...", "", "");
   delay(b * 100);
   mensajeSerial("Esperando Seleccion:\n\tA)Auto\n\tB)Manual");
   imprimirMensajes(0, 1, 2, 3, "Seleecione Prueba:", "", "A) Auto", "B) Manual");
@@ -231,14 +231,13 @@ void interrupcionIGBT()
   delay(1000);
 }
 
-void finPrueba(){
-  imprimirMensajes(0,1,2,3,"Prueba finalizada.","","Volviendo a ","Selector");
+void finPrueba() {
+  imprimirMensajes(0, 1, 2, 3, "Prueba finalizada.", "", "Volviendo a ", "Selector");
   seleccion();
-  break;
 }
 
-void horas(){
-  int horas=0;
-  horas=(4*60*60*100*100/tiempo);//El primer digito (4) define las horas de trabajo, el divisor es el tiempo de ciclo
-  return horas;
+int horas() {
+  int horas = 0;
+  horas = (4 * 60 * 60 * 100 * 100 / tiempo); //El primer digito (4) define las horas de trabajo, el divisor es el tiempo de ciclo
+  return (int) horas;
 }
